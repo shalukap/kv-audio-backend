@@ -6,16 +6,21 @@ import studentRouter from './routes/studentRoute.js';
 import userRouter from './routes/userRouter.js';
 import productRouter from './routes/productRouter.js';
 import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
 
+dotenv.config();
 
 const app=express();
+
+
 app.use(bodyParser.json());
+
 //middleware to create token 
 app.use((req,res,next)=>{
     let token = req.header("Authorization");
     if (token!=null){
         token=token.replace("Bearer ","");
-        jwt.verify(token,"KV-secret-15L",(err,decoded)=>{
+        jwt.verify(token,process.env.JWT_SECRET,(err,decoded)=>{
             if(!err){
                 req.user=decoded         
                 
@@ -28,7 +33,7 @@ app.use((req,res,next)=>{
     
 })
 
-let mongoUrl="mongodb+srv://shaluka:Xt20Ay91@aimscluster.09fla.mongodb.net/MERN?retryWrites=true&w=majority&appName=AIMSCluster"
+let mongoUrl=process.env.MONGO_URL;
 
 mongoose.connect(mongoUrl)
 let connction=mongoose.connection
