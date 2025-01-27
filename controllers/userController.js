@@ -24,7 +24,8 @@ export function registerUser(req,res){
 
 export function loginUser(req,res){
     const data=req.body;
-
+    console.log(data);
+    
     User.findOne({
         email:data.email
     }).then((user)=>{

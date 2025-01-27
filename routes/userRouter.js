@@ -5,7 +5,7 @@ const userRouter=express.Router()
 
 
 userRouter.post("/",registerUser)
-userRouter.get("/login",loginUser)
+userRouter.post("/login",loginUser)
 
 
 export default userRouter

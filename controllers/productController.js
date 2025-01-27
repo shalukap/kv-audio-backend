@@ -26,3 +26,7 @@ export function addProduct(req,res){
         res.status(500).json({error:error})
     })
 }
+
+export function getProducts(req,res){
+    if (req.user==null){
+}}
